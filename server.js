@@ -1,5 +1,10 @@
-console.log('123');
-const { v4: uuidv4 } = require('uuid');
+const http = require('http');
 
-try {
-} catch {}
+const requestListener = (req, res) => {
+  res.writeHeader(200, { 'content-Type': 'text/plain' });
+  res.write('Hello');
+  res.end();
+};
+
+const server = http.createServer(requestListener);
+server.listen(3005);
