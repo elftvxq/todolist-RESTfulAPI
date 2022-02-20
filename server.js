@@ -57,6 +57,16 @@ const requestListener = (req, res) => {
         errorHandle(res);
       }
     });
+  } else if (req.url == '/todos' && req.method == 'DELETE') {
+    todos.length = [];
+    res.writeHeader(200, headers);
+    res.write(
+      JSON.stringify({
+        status: 'success',
+        data: todos,
+      })
+    );
+    res.end();
   } else if (req.method == 'OPTIONS') {
     res.writeHeader(200, headers);
     res.end();
