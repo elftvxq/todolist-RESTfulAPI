@@ -1,5 +1,6 @@
 const http = require('http');
 const { v4: uuidv4 } = require('uuid');
+const errorHandle = require('./errorHandle');
 
 const todos = [];
 
@@ -31,22 +32,30 @@ const requestListener = (req, res) => {
   } else if (req.url == '/todos' && req.method == 'POST') {
     // req on end: make sure to get the request data
     req.on('end', () => {
-      const { title } = JSON.parse(body);
-      // get data and make send body
-      const todo = {
-        title: title,
-        id: uuidv4(),
-      };
+      try {
+        const { title } = JSON.parse(body);
+        // error handle: if no title
+        if (title !== undefined) {
+          const todo = {
+            title: title,
+            id: uuidv4(),
+          };
 
-      todos.push(todo);
-      res.writeHeader(200, headers);
-      res.write(
-        JSON.stringify({
-          status: 'success',
-          data: todos,
-        })
-      );
-      res.end();
+          todos.push(todo);
+          res.writeHeader(200, headers);
+          res.write(
+            JSON.stringify({
+              status: 'success',
+              data: todos,
+            })
+          );
+          res.end();
+        } else {
+          errorHandle(res);
+        }
+      } catch (error) {
+        errorHandle(res);
+      }
     });
   } else if (req.method == 'OPTIONS') {
     res.writeHeader(200, headers);
