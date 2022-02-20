@@ -85,16 +85,31 @@ const requestListener = (req, res) => {
     } else {
       errorHandle(res);
     }
-
-    res.writeHeader(200, headers);
-    res.write(
-      JSON.stringify({
-        status: 'success',
-        data: todos,
-        id: 1,
-      })
-    );
-    res.end();
+  } else if (req.url.startsWith('/todos') && req.method == 'PATCH') {
+    req.on('end', () => {
+      try {
+        const { title } = JSON.parse(body);
+        const id = req.url.split('/').pop();
+        const index = todos.findIndex((ele) => ele.id === id);
+        if (title !== undefined && index !== -1) {
+          todos[index].title = title;
+          res.writeHeader(200, headers);
+          res.write(
+            JSON.stringify({
+              status: 'success',
+              data: todos,
+            })
+          );
+          res.end();
+        } else {
+          errorHandle(res);
+        }
+        console.log(title, id);
+        res.end();
+      } catch {
+        errorHandle(res);
+      }
+    });
   } else if (req.method == 'OPTIONS') {
     res.writeHeader(200, headers);
     res.end();
