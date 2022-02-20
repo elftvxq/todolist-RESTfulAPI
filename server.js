@@ -1,9 +1,19 @@
 const http = require('http');
 
 const requestListener = (req, res) => {
-  res.writeHeader(200, { 'content-Type': 'text/plain' });
-  res.write('Hello');
-  res.end();
+  const headers = {
+    'content-Type': 'text/plain',
+  };
+  // only user access to the homepage and only by "GET" method
+  if (req.url == '/' && req.method == 'GET') {
+    res.writeHeader(200, headers);
+    res.write('123');
+    res.end();
+  } else {
+    res.writeHeader(404, headers);
+    res.write('not found 404');
+    res.end();
+  }
 };
 
 const server = http.createServer(requestListener);
