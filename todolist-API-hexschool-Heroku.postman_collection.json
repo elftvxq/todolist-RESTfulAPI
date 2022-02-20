@@ -1,0 +1,141 @@
+{
+	"info": {
+		"_postman_id": "2c68f73c-11a3-4f8e-ab21-422e3b2aa33d",
+		"name": "todolist-API-hexschool-Heroku",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Add a todo list",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"逗貓棒玩玩\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://pure-sierra-94160.herokuapp.com/todos",
+					"protocol": "https",
+					"host": [
+						"pure-sierra-94160",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"todos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET all todo list",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://pure-sierra-94160.herokuapp.com/todos",
+					"protocol": "https",
+					"host": [
+						"pure-sierra-94160",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"todos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE all todo list",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://pure-sierra-94160.herokuapp.com/todos",
+					"protocol": "https",
+					"host": [
+						"pure-sierra-94160",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"todos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE a todo list",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://pure-sierra-94160.herokuapp.com/todos/7753d971-74c3-4caf-b673-895f92ec4f0c",
+					"protocol": "https",
+					"host": [
+						"pure-sierra-94160",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"todos",
+						"7753d971-74c3-4caf-b673-895f92ec4f0c"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update a todo list",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"放飯：喜歡魚口味的罐罐\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://pure-sierra-94160.herokuapp.com/todos/7b407a54-6745-4a13-bd60-5b7664ef52d4",
+					"protocol": "https",
+					"host": [
+						"pure-sierra-94160",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"todos",
+						"7b407a54-6745-4a13-bd60-5b7664ef52d4"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
